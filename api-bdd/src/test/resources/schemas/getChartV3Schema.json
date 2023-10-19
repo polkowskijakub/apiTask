@@ -1,0 +1,274 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "chart": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "exchangeTimezoneName": {
+                      "type": "string"
+                    },
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "instrumentType": {
+                      "type": "string"
+                    },
+                    "firstTradeDate": {
+                      "type": "integer"
+                    },
+                    "timezone": {
+                      "type": "string"
+                    },
+                    "range": {
+                      "type": "string"
+                    },
+                    "regularMarketTime": {
+                      "type": "integer"
+                    },
+                    "dataGranularity": {
+                      "type": "string"
+                    },
+                    "validRanges": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "regularMarketPrice": {
+                      "type": "number"
+                    },
+                    "gmtoffset": {
+                      "type": "integer"
+                    },
+                    "chartPreviousClose": {
+                      "type": "number"
+                    },
+                    "priceHint": {
+                      "type": "integer"
+                    },
+                    "currency": {
+                      "type": "string"
+                    },
+                    "exchangeName": {
+                      "type": "string"
+                    },
+                    "currentTradingPeriod": {
+                      "type": "object",
+                      "properties": {
+                        "pre": {
+                          "type": "object",
+                          "properties": {
+                            "gmtoffset": {
+                              "type": "integer"
+                            },
+                            "timezone": {
+                              "type": "string"
+                            },
+                            "start": {
+                              "type": "integer"
+                            },
+                            "end": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "gmtoffset",
+                            "timezone",
+                            "start",
+                            "end"
+                          ]
+                        },
+                        "post": {
+                          "type": "object",
+                          "properties": {
+                            "gmtoffset": {
+                              "type": "integer"
+                            },
+                            "timezone": {
+                              "type": "string"
+                            },
+                            "start": {
+                              "type": "integer"
+                            },
+                            "end": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "gmtoffset",
+                            "timezone",
+                            "start",
+                            "end"
+                          ]
+                        },
+                        "regular": {
+                          "type": "object",
+                          "properties": {
+                            "gmtoffset": {
+                              "type": "integer"
+                            },
+                            "timezone": {
+                              "type": "string"
+                            },
+                            "start": {
+                              "type": "integer"
+                            },
+                            "end": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "gmtoffset",
+                            "timezone",
+                            "start",
+                            "end"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "pre",
+                        "post",
+                        "regular"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "exchangeTimezoneName",
+                    "symbol",
+                    "instrumentType",
+                    "firstTradeDate",
+                    "timezone",
+                    "range",
+                    "regularMarketTime",
+                    "dataGranularity",
+                    "validRanges",
+                    "regularMarketPrice",
+                    "gmtoffset",
+                    "chartPreviousClose",
+                    "priceHint",
+                    "currency",
+                    "exchangeName",
+                    "currentTradingPeriod"
+                  ]
+                },
+                "indicators": {
+                  "type": "object",
+                  "properties": {
+                    "quote": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "volume": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            "high": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "number"
+                                }
+                              ]
+                            },
+                            "low": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "number"
+                                }
+                              ]
+                            },
+                            "close": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "number"
+                                }
+                              ]
+                            },
+                            "open": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "number"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "adjclose": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "adjclose": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "number"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "adjclose"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "quote"
+                  ]
+                },
+                "timestamp": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "integer"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "meta",
+                "indicators"
+              ]
+            }
+          ]
+        },
+        "error": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "result",
+        "error"
+      ]
+    }
+  },
+  "required": [
+    "chart"
+  ]
+}
