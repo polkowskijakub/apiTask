@@ -8,9 +8,9 @@ import lombok.experimental.UtilityClass;
 public class SecurityHelper {
 
     public static final String X_RAPIDAPI_KEY = "X-RapidAPI-Key";
-    private static String xRapidApiKey = "ENTER_YOUR_CREDENTIALS";
+    private static String xRapidApiKey = "9b534b4f73msh25841653c29e525p18623ejsnc2d7a6a587e5";
     public static final String X_RAPIDAPI_HOST = "X-RapidAPI-Host";
-    private static String xRapidApiHost = "ENTER_YOUR_CREDENTIALS";
+    private static String xRapidApiHost = "apidojo-yahoo-finance-v1.p.rapidapi.com";
 
     public static void setupRole(ScenarioContext scenarioContext, String role) {
         scenarioContext.getHeaders().remove("X-RapidAPI-Key");

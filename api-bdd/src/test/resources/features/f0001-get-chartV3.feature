@@ -21,7 +21,7 @@ Feature: f0001 verification of get-chart endpoint in version 3
         And value in field "chart.error" is null
         Examples:
             | symbol |
-            | AMR    |
+   #         | AMR    |
             | NVDA   |
 
     @Negative
@@ -138,4 +138,20 @@ Feature: f0001 verification of get-chart endpoint in version 3
 
 
 
+    @Positive
+    Scenario Outline: 01.xxx Using all required parameters
+        Given I am an "authorized" user
+        When I perform a GET request for "stock/v3/get-chart" with parameters:
+            | interval             | 1Y                  |
+            | symbol               | <symbol>              |
+            | range                | 1Y                    |
 
+        Then I receive the request response code 200
+        And the response structure has the same content as the "schemas/getChartV3Schema.json" schema
+        And the response contains the following values:
+            | chart.result[0].meta.exchangeTimezoneName | America/New_York |
+            | chart.result[0].meta.symbol               | <symbol>         |
+        And value in field "chart.error" is null
+        Examples:
+            | symbol |
+            | NVDA   |

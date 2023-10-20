@@ -5,6 +5,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,5 +63,17 @@ public class StepDefCommon {
         }
     }
 
+    @Then("I save {string} file with content {string}")
+    public void iCreateAFileWithContent(String fileName, String content) {
+        try {
+            FileWriter myWriter = new FileWriter(fileName+".txt");
+            myWriter.write(content);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
 }
