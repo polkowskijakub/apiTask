@@ -10,11 +10,11 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import static org.example.helpers.apiCalls.getRegularMarketPrice;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class f0001 {
+public class f0001_tests_get_chart_v3_tests {
 
     static Playwright playwright;
     static Browser browser;
-    static String pageUrl = "https://finance.yahoo.com/chart/NVDA";
+    static final String pageUrl = "https://finance.yahoo.com/chart/NVDA";
 
     BrowserContext context;
     Page page;
@@ -50,7 +50,7 @@ public class f0001 {
 
 
     @Test
-    void marketPriceShouldBeEqual() {
+    void marketPriceShouldBeEqualToPriceThatIsProvidedByAPICall() {
         assertThat(page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("3M"))).isVisible();
 
 
@@ -59,11 +59,13 @@ public class f0001 {
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("1 year")).click();
 
         ElementHandle element = page.querySelector("[data-test=qsp-price]");
-        String value = element.getAttribute("value");
-        Double db = Double.valueOf(value);
+        String marketPriceFromGUI = element.getAttribute("value");
+        Double valueOfMarketPriceFromGUI = Double.valueOf(marketPriceFromGUI);
 
         Double apiValue = getRegularMarketPrice("1Y", "NVDA", "1Y");
-        assertEquals(apiValue, db);
+        assertEquals(apiValue, valueOfMarketPriceFromGUI);
 
     }
+
+
 }

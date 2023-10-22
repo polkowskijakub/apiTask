@@ -21,7 +21,7 @@ Feature: f0001 verification of get-chart endpoint in version 3
         And value in field "chart.error" is null
         Examples:
             | symbol |
-   #         | AMR    |
+            | AMR    |
             | NVDA   |
 
     @Negative
@@ -45,7 +45,6 @@ Feature: f0001 verification of get-chart endpoint in version 3
             |          | NVDA   | 5y    |
 
 
-
     @Negative
     Scenario Outline: 01.4 Using endpoint without required parameter - symbol
         Given I am an "authorized" user
@@ -62,7 +61,7 @@ Feature: f0001 verification of get-chart endpoint in version 3
             | interval | range |
             | 1mo      | 5y    |
 
-    @Negative @Ignore
+    @Negative
     Scenario Outline: 01.5 Using endpoint without required parameter - range
         # this should return an error as the required parameter is not provided
         Given I am an "authorized" user
@@ -137,21 +136,27 @@ Feature: f0001 verification of get-chart endpoint in version 3
             | 1d       | NVDA   |       | DE     | 1562170150 | 1556816400 | ^FCHI       | true           | false   | false                | split  |
 
 
-
     @Positive
-    Scenario Outline: 01.xxx Using all required parameters
+    Scenario Outline: 01.8 Using fixed values for period1 and period2
         Given I am an "authorized" user
         When I perform a GET request for "stock/v3/get-chart" with parameters:
-            | interval             | 1Y                  |
-            | symbol               | <symbol>              |
-            | range                | 1Y                    |
+            | interval             | <interval>             |
+            | symbol               | <symbol>               |
+            | range                | <range>                |
 
+            | region               | <region>               |
+            | period1              | <period1>              |
+            | period2              | <period2>              |
+            | comparisons          | <comparisons>          |
+            | includePrePost       | <includePrePost>       |
+            | useYfid              | <useYfid>              |
+            | includeAdjustedClose | <includeAdjustedClose> |
+            | events               | <events>               |
         Then I receive the request response code 200
-        And the response structure has the same content as the "schemas/getChartV3Schema.json" schema
         And the response contains the following values:
             | chart.result[0].meta.exchangeTimezoneName | America/New_York |
             | chart.result[0].meta.symbol               | <symbol>         |
         And value in field "chart.error" is null
         Examples:
-            | symbol |
-            | NVDA   |
+            | interval | symbol | range | region | period1    | period2    | comparisons | includePrePost | useYfid | includeAdjustedClose | events |
+            | 1y       | NVDA   | 1m    | US     | 1609538400 | 1640991600 |             |                |         |                      |        |

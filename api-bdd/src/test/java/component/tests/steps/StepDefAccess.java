@@ -6,12 +6,10 @@ import io.cucumber.java.en.Given;
 
 public class StepDefAccess {
     private final ScenarioContext scenarioContext;
-    private final StepDefCommon stepDefCommon;
-
 
     public StepDefAccess(ScenarioContext scenarioContext) {
         this.scenarioContext = scenarioContext;
-        this.stepDefCommon = new StepDefCommon(scenarioContext);
+        StepDefCommon stepDefCommon = new StepDefCommon(scenarioContext);
     }
 
     @Given("I am an {string} user")
